@@ -175,17 +175,29 @@ services:
                   <div className="bg-slate-50 border border-slate-200 rounded-xl p-3">
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-bold text-slate-700">2. Build Command</span>
-                      <button
-                        onClick={() => copyToClipboard('npm install && npm run build', 'build_cmd')}
-                        className="inline-flex items-center gap-1 px-2 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded text-[11px] font-mono cursor-pointer transition-colors"
-                      >
-                        {copiedKey === 'build_cmd' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                        <span>Copy</span>
-                      </button>
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => copyToClipboard('npm run build', 'build_cmd')}
+                          className="inline-flex items-center gap-1 px-2 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded text-[11px] font-mono cursor-pointer transition-colors"
+                        >
+                          {copiedKey === 'build_cmd' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                          <span>Copy npm</span>
+                        </button>
+                        <button
+                          onClick={() => copyToClipboard('bun run build', 'bun_cmd')}
+                          className="inline-flex items-center gap-1 px-2 py-1 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded text-[11px] font-mono cursor-pointer transition-colors"
+                        >
+                          {copiedKey === 'bun_cmd' ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                          <span>Copy bun</span>
+                        </button>
+                      </div>
                     </div>
                     <code className="block bg-slate-900 text-emerald-400 p-2 rounded-lg font-mono text-[11px]">
-                      npm install &amp;&amp; npm run build
+                      npm run build &nbsp; (or: bun run build)
                     </code>
+                    <p className="text-[10px] text-slate-500 mt-1.5">
+                      ⚠️ If you received <code className="bg-rose-100 text-rose-800 px-1 py-0.2 rounded font-mono">dist does not exist!</code>, make sure this field is not empty, and has <strong>npm run build</strong> or <strong>bun run build</strong>.
+                    </p>
                   </div>
 
                   {/* Step 3: Publish Directory */}

@@ -34,8 +34,11 @@ Because this is a high-performance modern React (Vite + Tailwind CSS) single-pag
    | :--- | :--- |
    | **Name** | `smart-waste-management` (or any name you like) |
    | **Branch** | `main` |
-   | **Build Command** | `npm install && npm run build` |
+   | **Build Command** | `npm run build` *(or `bun run build`)* |
    | **Publish Directory** | `dist` |
+
+   > 💡 **Notice about "Publish directory dist does not exist!"**:
+   > If Render showed this message, Render only executed the install step (`bun install`) because the Build Command field was blank or default. We have added `"postinstall": "vite build"` in `package.json`, which ensures `dist` is created automatically, and set the Build Command to `npm run build`.
 
 5. **Set the Single-Page Application (SPA) Rewrite Rule**:
    - Scroll down to **"Redirects/Rewrites"** in the settings.
