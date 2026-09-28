@@ -15,7 +15,8 @@ import {
   Loader2,
   Check,
   FileText,
-  AlertCircle
+  AlertCircle,
+  Globe
 } from 'lucide-react';
 import { 
   INITIAL_CITIZENS, 
@@ -43,6 +44,7 @@ import { InteractivePrototype } from './components/InteractivePrototype';
 import { DiagramGallery } from './components/DiagramGallery';
 import { DatabaseViewer } from './components/DatabaseViewer';
 import { CodeViewer } from './components/CodeViewer';
+import { RenderDeployModal } from './components/RenderDeployModal';
 import { generatePdf, exportToWordDocument } from './utils/pdfExport';
 
 export default function App() {
@@ -50,6 +52,7 @@ export default function App() {
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [pdfDownloaded, setPdfDownloaded] = useState(false);
   const [isWordExported, setIsWordExported] = useState(false);
+  const [isDeployModalOpen, setIsDeployModalOpen] = useState(false);
 
   // Auto-download listener for direct download query param
   useEffect(() => {
@@ -362,6 +365,14 @@ export default function App() {
                 </>
               )}
             </button>
+            <button
+              onClick={() => setIsDeployModalOpen(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-xs transition-all cursor-pointer"
+              title="Render.com Deployment Configuration & Instructions"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>Deploy to Render</span>
+            </button>
           </div>
         </div>
       </header>
@@ -378,6 +389,13 @@ export default function App() {
             </p>
           </div>
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsDeployModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-400/40 text-xs font-bold rounded-lg transition-all cursor-pointer"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <span>Render Deploy Info</span>
+            </button>
             <a
               href="/Smart_Waste_Management_System_Lab_Record.pdf"
               download="Smart_Waste_Management_System_Lab_Record.pdf"
@@ -477,6 +495,12 @@ export default function App() {
           )}
         </button>
       </aside>
+
+      {/* Render Deployment Modal */}
+      <RenderDeployModal
+        isOpen={isDeployModalOpen}
+        onClose={() => setIsDeployModalOpen(false)}
+      />
     </div>
   );
 }

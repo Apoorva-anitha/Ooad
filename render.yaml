@@ -1,0 +1,34 @@
+# Render Blueprint Configuration (render.yaml)
+# Smart Waste Management System - Lab Record & Simulation
+# Deploy via Render Dashboard -> "Blueprints" or "New Web Service / Static Site"
+
+services:
+  # Option 1: Static Site (Recommended: 100% Free, High-speed CDN, Zero cold starts)
+  - type: web
+    name: smart-waste-management-ui
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
+
+  # Option 2: Node.js Web Service (Full Node runtime with Express fallback)
+  # Uncomment below if you prefer a Node Web Service instead of a Static Site:
+  # - type: web
+  #   name: smart-waste-management-server
+  #   runtime: node
+  #   plan: free
+  #   buildCommand: npm install && npm run build
+  #   startCommand: npm start
+  #   healthCheckPath: /healthz
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
+  #     - key: PORT
+  #       value: 10000
