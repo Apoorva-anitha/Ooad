@@ -1,0 +1,6 @@
+{
+  "name": "Smart Waste Management System - OOAD Lab Record",
+  "description": "Complete CS1508 Object Oriented Analysis and Design Lab record and interactive prototype for the Smart Waste Management System with all 8 UML diagrams, requirements, code, and live simulation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
